@@ -1,4 +1,4 @@
-# fireblogs
+# Biology Teaching Materials (Living cells)
 
 ## Project setup
 ```
