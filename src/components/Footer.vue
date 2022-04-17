@@ -22,8 +22,9 @@
       <div class="col-2">
         <ul>
          <router-link class="link" :to="{ name: 'Home'}">Home</router-link>
-         <router-link class="link" :to="{ name: 'Blogs'}">Lesson</router-link>
-         <router-link class="link" to="#">Create Lesson</router-link>
+         <router-link class="link" :to="{ name: 'Lesson' }">Lesson</router-link>
+         <router-link v-if="user" class="link" :to="{ name: 'Quiz' }">Quiz</router-link>
+         <router-link v-if="admin" class="link" :to="{ name: 'CreatePost' }">Create Lesson</router-link>
          <router-link v-if="!user" class="link" :to="{ name: 'Login'}">Login/Register</router-link>
         </ul>
       </div>
@@ -51,6 +52,9 @@ export default {
     computed: {
         user() {
             return this.$store.state.user;
+        },
+        admin() {
+            return this.$store.state.profileAdmin;
         },
     },
 };

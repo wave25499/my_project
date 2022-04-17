@@ -1,19 +1,19 @@
 <template>
   <div class="home">
     <BlogPost v-if="!user" :post="welcomeScreen" />
-    <BlogPost :post="post" v-for="(post, index) in sampleBlogPost" :key="index" />
+    <BlogPost :post="post" v-for="(post, index) in blogPostsFeed" :key="index" />
     <div class="blog-card-wrap">
       <div class="container">
         <h3>View More Recent Lesson</h3>
         <div class="blog-cards">
-          <BlogCard :post="post" v-for="(post, index) in sampleBlogCards" :key="index" />
+          <BlogCard :post="post" v-for="(post, index) in blogPostsCards" :key="index" />
         </div>
       </div>
     </div>
     <div v-if="!user" class="updates">
       <div class="container">
         <h2>never miss a Biology Teaching Materials (Living cells). Register for your account today!</h2>
-        <router-link class="router-button" to="#">
+        <router-link class="router-button" :to="{ name: 'Register' }">
           Register for Biology Teaching Materials (Living cells) <Arrow class="arrow arrow-light" />
         </router-link>
       </div>
@@ -37,23 +37,14 @@ export default {
         welcomeScreen: true,
         photo: "biology",
       },
-      sampleBlogPost: [
-        {
-          title: "มีเนื้อหามากมายให้เรียนรู้อีกมาก",
-          blogHTML: "",
-          blogCoverPhoto: "biology2",
-        },
-        {
-          title: "เก็บเกี่ยวความรู้ แล้วนำไปใช้สิ",
-          blogHTML: "",
-          blogCoverPhoto: "Animalcell",
-        },
-      ],
     };
   },
     computed: {
-      sampleBlogCards() {
-        return this.$store.state.sampleBlogCards;
+      blogPostsFeed() {
+        return this.$store.getters.blogPostsFeed;
+      },
+       blogPostsCards() {
+        return this.$store.getters.blogPostsCards;
       },
       user() {
             return this.$store.state.user;
